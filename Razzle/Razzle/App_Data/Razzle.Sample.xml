@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Razzle.Sample</name>
+    </assembly>
+    <members>
+        <member name="M:Razzle.Sample.Foo.Bar.GetBarFoo">
+            <summary>
+            This will not have documentation because of the "ignore".
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException">Not yet implemented.</exception>
+            <ignore>true</ignore>
+        </member>
+        <member name="M:Razzle.Sample.Foo.Bar.GetBarBaz">
+            <summary>
+            Gets the baz.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException">Not yet implemented.</exception>
+            <gist id="3038130495f4ca39683d">Get the foo</gist>
+        </member>
+        <member name="M:Razzle.Sample.Foo.Bar.GetBarFooBar">
+            <summary>
+            Gets the bar foo bar.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+            <see cref="T:Razzle.Sample.Bar.Baz">This is related</see>
+        </member>
+        <member name="P:Razzle.Sample.Foo.Bar.BazZippy">
+            <summary>
+            Gets or sets my zippy.
+            </summary>
+            <value>
+            zippy
+            </value>
+        </member>
+        <member name="T:Razzle.Sample.Bar.Baz">
+            <summary>
+            Bizzy Baz
+            </summary>
+        </member>
+        <member name="M:Razzle.Sample.Bar.Baz.GetBarFoo">
+            <summary>
+            This will not have documentation because of the "ignore".
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException">Not yet implemented.</exception>
+            <ignore>true</ignore>
+        </member>
+        <member name="M:Razzle.Sample.Bar.Baz.GetBarBaz">
+            <summary>
+            Gets the baz.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException">Not yet implemented.</exception>
+            <gist id="3038130495f4ca39683d">Get the foo</gist>
+        </member>
+        <member name="M:Razzle.Sample.Bar.Baz.GetBarFooBar">
+            <summary>
+            Gets the bar foo bar.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+            <see cref="T:Razzle.Sample.Bar.Baz">This is related</see>
+        </member>
+        <member name="P:Razzle.Sample.Bar.Baz.BazLippy">
+            <summary>
+            Gets or sets lippy.
+            </summary>
+            <value>
+            lippy
+            </value>
+        </member>
+        <member name="M:Razzle.Sample.Baz.Foo.GetBazFoo">
+            <summary>
+            This will not have documentation because of the "ignore".
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException">Not yet implemented.</exception>
+            <ignore>true</ignore>
+        </member>
+        <member name="M:Razzle.Sample.Baz.Foo.GetBazBaz">
+            <summary>
+            Gets the baz.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException">Not yet implemented.</exception>
+            <gist id="3038130495f4ca39683d">Get the foo</gist>
+        </member>
+        <member name="M:Razzle.Sample.Baz.Foo.GetBarFooBar">
+            <summary>
+            Gets the bar foo bar.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
+            <see cref="T:Razzle.Sample.Bar.Baz">This is related</see>
+        </member>
+        <member name="P:Razzle.Sample.Baz.Foo.BazDippy">
+            <summary>
+            Gets or sets dippy.
+            </summary>
+            <value>
+            dippy
+            </value>
+        </member>
+    </members>
+</doc>

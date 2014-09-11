@@ -1,0 +1,31 @@
+﻿@using Razzle.Contracts.DataContracts
+@model Namespace
+
+@{
+	ViewBag.Title = Model != null ? Model.Name : "";
+}
+
+@section featured {
+	<div class="featured jumbotron jumbotron-warning mbl">
+		<div class="container">
+			<div class="title">
+				<i class="logo pull-left"></i>
+				<h1>@(Html.SiteName()).</h1>
+				<h2 class="muted">@(Html.SiteDescription())</h2>
+				<hr />
+				<p class="text-center">
+					<a href="https://github.com/camalot/razzle" target="_blank" class="btn btn-lg"><i class="fa fa-external-link-square mrs" title="Project"></i><span class="">Project</span></a>
+					<a href="https://github.com/camalot/razzle/fork" target="_blank" class="btn btn- btn-lg"><i class="fa fa-code-fork mrs" title="Source"></i><span class="">Fork</span></a>
+					<a href="https://github.com/camalot/razzle/issues" target="_blank" class="btn btn-lg"><i class="fa fa-bug mrs" title="Issues"></i><span class="">Issues</span></a>
+				</p>
+			</div>
+		</div>
+	</div>
+}
+
+@(Html.Partial("_AboutPartial"))
+
+@(Html.Partial("_LicensePartial"))
+
+
+@(this.RenderDocumentation(Model))
