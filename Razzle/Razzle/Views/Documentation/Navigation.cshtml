@@ -25,7 +25,7 @@
 				 data-expandable-target="ul[data-id='@(ns.Id)']"
 				 data-scroll="click"
 				 data-scroll-offset="@(offset)"
-				 href="@(Url.Action("Index", "Documentation", new { id = Model.Name }))#@ns.Id"
+				 href="@(Url.Action("", "Documentation", new { id = Model.Name }))#@ns.Id"
 				 title="@ns.ToString()"
 				 class="track"><i class="mll mrs fa fa-code"></i><span>@SafeNamespaceName(ns.Name)</span></a>
 			@if(ns.Classes.Count > 0) {
@@ -47,7 +47,7 @@
 	var root = Model.Namespaces.FirstOrDefault(m => m.Name == Model.Name).Or(Model);
 	if(!root.Ignore) {
 		<li>
-			<a data-scroll="click" data-scroll-offset="@(offset)" href="@(Url.Action("Index", "Documentation", new { id = root.Name }))#@root.Id" class="track"><i class="mrs fa fa-code"></i><span>@root.Name</span></a>
+			<a data-scroll="click" data-scroll-offset="@(offset)" href="@(Url.Action("", "Documentation", new { id = root.Name }))#@root.Id" class="track"><i class="mrs fa fa-code"></i><span>@root.Name</span></a>
 			@if(root.Classes.Count > 0 || root.Namespaces.Count > 0) {
 				<ul class="nav nested nav-always-expanded">
 					@foreach(var ns in Model.Namespaces.Where(m => m.Name != root.Name)) {
@@ -72,7 +72,7 @@
 				 data-expandable-target="ul[data-id='@(cm.Id)']" 
 				 data-scroll="click" 
 				 data-scroll-offset="@(offset)" 
-				 href="@(Url.Action("Index", "Documentation", new { id = Model.Name }))#@cm.Id" title="@cm.ToString()" 
+				 href="@(Url.Action("", "Documentation", new { id = Model.Name }))#@cm.Id" title="@cm.ToString()" 
 				 class="track"><i class="mll mrs fa fa-bolt"></i><span>@cm.Name</span></a>
 			@if(cm.Properties.Count > 0 || cm.Methods.Count > 0) {
 				<ul class="nav nested mll" data-id="@cm.Id">
@@ -90,13 +90,13 @@
 
 @helper DisplayProperty(Property pm, int offset) {
 	if(!pm.Ignore) {
-		<li><a data-scroll="click" data-scroll-offset="@(offset)" href="@(Url.Action("Index", "Documentation", new { id = Model.Name }))#@pm.Id" title="@pm.ToString()" class="track"><i class="mll mrs fa fa-asterisk"></i><span>@pm.Name</span></a></li>
+		<li><a data-scroll="click" data-scroll-offset="@(offset)" href="@(Url.Action("", "Documentation", new { id = Model.Name }))#@pm.Id" title="@pm.ToString()" class="track"><i class="mll mrs fa fa-asterisk"></i><span>@pm.Name</span></a></li>
 	}
 }
 
 @helper DisplayMethod(Method mm, int offset) {
 	if(!mm.Ignore) {
-		<li><a data-scroll="click" data-scroll-offset="@(offset)" href="@(Url.Action("Index", "Documentation", new { id = Model.Name }))#@mm.Id" title="@mm.ToString()" class="track"><i class="mll mrs fa fa-gavel"></i><span>@mm.Name</span></a></li>
+		<li><a data-scroll="click" data-scroll-offset="@(offset)" href="@(Url.Action("", "Documentation", new { id = Model.Name }))#@mm.Id" title="@mm.ToString()" class="track"><i class="mll mrs fa fa-gavel"></i><span>@mm.Name</span></a></li>
 	}
 }
 
@@ -106,6 +106,6 @@
 	</li>
 } else {
 	<li>
-		<a data-scroll="click" data-scroll-offset="@(scrollTopOffset)" href="@(Url.Action("Index", "Documentation", new { id = Model.Name }))" class="track"><i class="mrs fa fa-code"></i><span>@Model.Name</span></a>
+		<a data-scroll="click" data-scroll-offset="@(scrollTopOffset)" href="@(Url.Action("", "Documentation", new { id = Model.Name }))" class="track"><i class="mrs fa fa-code"></i><span>@Model.Name</span></a>
 	</li>
 }

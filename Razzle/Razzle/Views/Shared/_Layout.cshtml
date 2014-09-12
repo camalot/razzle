@@ -1,11 +1,8 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head prefix="og:http://ogp.me/ns# fb:http://ogp.me/ns/fb#">
-	<meta charset="utf-8" />
 	<title>@(Html.SiteName()):@(ViewBag.Title)</title>
-
 	@Html.Partial("_MetaPartial")
-
 	@(Styles.Render("~/css/site"))
 	@(RenderSection("styles", required: false))
 </head>
@@ -36,12 +33,9 @@
 	@(this.RenderSideNavigation())
 	@(RenderSection("scripts", required: false))
 	@(Html.Partial("Analytics"))
-	@*@(Html.Partial("_AddThisSideBarPartial"))*@
 
 	<div class="go-to-top fade" data-scroll-show-low="265" data-scroll-toggle="fade">
 		<a href="#home" data-scroll="click" class="btn btn-round btn-success btn-lg"><i class="fa fa-arrow-up"></i></a>
 	</div>
-
-
 </body>
 </html>

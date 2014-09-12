@@ -20,8 +20,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{CFA1E93A-AC13-455E-B8C4-2FAD1EC61778}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitignore = ..\.gitignore
+		build\Build.msbuild = build\Build.msbuild
 		..\LICENSE = ..\LICENSE
+		build\nuget.bat = build\nuget.bat
+		build\NugetPublish.msbuild = build\NugetPublish.msbuild
+		build\Razzle.nuspec = build\Razzle.nuspec
 		..\README.md = ..\README.md
+		build\WebPublish.msbuild = build\WebPublish.msbuild
 	EndProjectSection
 EndProject
 Global

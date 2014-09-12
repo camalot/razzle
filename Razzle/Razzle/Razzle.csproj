@@ -49,11 +49,13 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
-    <Reference Include="Camalot.Common">
-      <HintPath>..\packages\Camalot.Common.1.0.5364.34047\lib\net45\Camalot.Common.dll</HintPath>
+    <Reference Include="Camalot.Common, Version=1.0.5367.33457, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Camalot.Common.1.0.5367.33457\lib\net45\Camalot.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Camalot.Common.Mvc">
-      <HintPath>..\packages\Camalot.Common.Mvc5.5.0.5364.37708\lib\net45\Camalot.Common.Mvc.dll</HintPath>
+    <Reference Include="Camalot.Common.Mvc, Version=5.0.5367.33631, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Camalot.Common.Mvc5.5.0.5367.33631\lib\net45\Camalot.Common.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MoreLinq">
@@ -130,7 +132,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -392,7 +393,7 @@
     <Content Include="Views\Assets\Adsense.cshtml" />
     <Content Include="Views\Shared\Analytics.cshtml" />
     <Content Include="Views\Shared\RazzleTemplates\_NavBarPartial.cshtml" />
-    <Content Include="Views\Shared\_PaypalPartial.cshtml" />
+    <Content Include="Views\Shared\RazzleTemplates\_PaypalPartial.cshtml" />
     <Content Include="Views\Shared\RazzleTemplates\_SideNavPartial.cshtml" />
     <Content Include="Views\Documentation\Navigation.cshtml" />
     <Content Include="assets\scripts\system.sidebar.min.js.map">
@@ -416,9 +417,9 @@
     <Content Include="Views\Shared\DisplayTemplates\Parameter.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Property.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Type.cshtml" />
-    <Content Include="Views\Shared\_DirectLink.cshtml" />
-    <Content Include="Views\Shared\_IconPartial.cshtml" />
-    <Content Include="Views\Assets\Gist.cshtml" />
+    <Content Include="Views\Shared\RazzleTemplates\_DirectLink.cshtml" />
+    <Content Include="Views\Shared\RazzleTemplates\_IconPartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\GistModel.cshtml" />
     <Content Include="Views\Shared\_NavigationPartial.cshtml" />
     <Content Include="Views\Shared\_MetaPartial.cshtml" />
     <Content Include="assets\styles\main.css.map">
@@ -426,6 +427,8 @@
     </Content>
     <Content Include="Views\Documentation\_LicensePartial.cshtml" />
     <Content Include="Views\Documentation\_AboutPartial.cshtml" />
+    <Content Include="Views\Assets\Gist.cshtml" />
+    <Content Include="Views\Documentation\Assemblies\RazzleSample.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -289,6 +289,9 @@
   height: 42px;
   margin: 3px;
 }
+.razzle-top-navbar li.razzle-top-navbar-hidden {
+  display: none;
+}
 .razzle-top-navbar li.expandable-label {
   position: relative;
   white-space: nowrap;
@@ -328,6 +331,9 @@
   font-size: 0;
   border-top: solid 1px #2371f2;
   margin: 2px 0 2px 0;
+}
+.razzle-side-navbar li.razzle-side-navbar-hidden {
+  display: none;
 }
 .go-to-top {
   position: fixed;

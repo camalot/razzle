@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Razzle.Contracts.Services;
 using Camalot.Common.Extensions;
+using Razzle.Mvc.Extensions;
+using Razzle.Extensions;
 
 namespace Razzle.Mvc.Controllers {
 	public class DocumentationController : Controller {
@@ -16,9 +18,10 @@ namespace Razzle.Mvc.Controllers {
 
 		private IDocumentationService DocumentationService { get; set; }
 
-		public ActionResult Index(String id) {
+		public ActionResult Assembly(String id) {
 			var model = DocumentationService.Build(id);
-			return View(model);
+			
+			return View(viewName: this.ControllerContext.AssemblyView(id), model: model);
 		}
 
 		public PartialViewResult Navigation(string id) {

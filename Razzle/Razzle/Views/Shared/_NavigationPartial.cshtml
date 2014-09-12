@@ -1,4 +1,8 @@
-﻿
+﻿@*
+	
+	add "razzle-top-navbar-hidden" or "razzle-side-navbar-hidden" class to the <li> to prevent it from showing in one navigation or the other.
+
+*@
 <li><a href="@Url.Action("","")#home" data-scroll="click"><i class="mrs fa fa-home"></i><span>Home</span></a></li>
 <li><a href="@Url.Action("","")#about" data-scroll="click" class="track"><i class="mrs fa fa-question-circle"></i><span>About</span></a></li>
 <li class="divider"></li>
@@ -9,3 +13,9 @@
 <li class="divider hidden" data-scroll-show-low="265" data-scroll-toggle="hidden"></li>
 <li><a href="@Url.Action("","")#license" data-scroll="click" class="track"><i class="mrs fa fa-certificate text-white"></i><span>License</span></a></li>
 
+<li class="divider razzle-top-navbar-hidden"></li>
+<li class="razzle-top-navbar-hidden"><a href="http://google.com/"><i class="fa fa-globe mrs"></i><span>Google - Side</span></a></li>
+
+
+<li class="divider razzle-side-navbar-hidden"></li>
+<li class="razzle-side-navbar-hidden"><a href="http://google.com/"><i class="fa fa-globe mrs"></i><span>Google - Top</span></a></li>

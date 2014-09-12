@@ -1,17 +1,5 @@
 ﻿@using Razzle.Contracts.DataContracts
 @model Namespace
-
-@*
-	
-	This is your "home page" you can either have it display the documentation and everything, or
-	it can be different and you then create a view in ~/views/documentation/assemblies/{assemblyName}.cshtml (minus any dots/dashes/etc.). 
-	
-	Then call @(this.RenderDocumentation(Mode)) in that view.
-
-	This allows for multiple "projects" with just the one site.
-
-*@
-
 @{
 	ViewBag.Title = Model != null ? Model.Name : "";
 }

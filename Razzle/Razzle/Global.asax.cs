@@ -6,12 +6,15 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Razzle.Mvc.Configuration;
-
+using Camalot.Common.Mvc.Extensions;
 namespace Razzle {
 	public class MvcApplication : System.Web.HttpApplication {
 		protected void Application_Start() {
 			AreaRegistration.RegisterAllAreas();
-			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+
+			FiltersConfiguration.RegisterGlobalFilters(GlobalFilters.Filters);
+			RouteTable.Routes.RegisterRobotsTxt();
+
 			RouteConfiguration.RegisterRoutes(RouteTable.Routes);
 			BundleConfiguration.RegisterBundles(BundleTable.Bundles);
 		}

@@ -20,6 +20,7 @@ using Razzle.Contracts.Configuration;
 
 namespace Razzle.Mvc.Extensions {
 	public static partial class RazzleMvcExtensions {
+		private const string RazzleTemplates = "~/Views/Shared/RazzleTemplates/{0}.cshtml";
 		public static IHtmlString SiteName(this HtmlHelper helper) {
 			return SiteSetting(helper, "Name");
 		}
@@ -34,7 +35,7 @@ namespace Razzle.Mvc.Extensions {
 		}
 
 		public static IHtmlString DirectLink(this HtmlHelper helper, string id) {
-			return helper.Partial("_DirectLink", id);
+			return helper.Partial(RazzleTemplates.With("_DirectLink"), id);
 		}
 
 		public static IHtmlString StaticIcon(this HtmlHelper helper, bool isStatic) {
@@ -50,11 +51,14 @@ namespace Razzle.Mvc.Extensions {
 		}
 
 		public static IHtmlString Icon(this HtmlHelper helper, string icon, bool show = true, string title = "") {
-			return helper.Partial("_IconPartial", new IconHelperModel {
+			return helper.Partial(RazzleTemplates.With("_IconPartial"), new IconHelperModel {
 				Show = show,
 				Title = title,
 				Icon = icon
 			});
+		}
+		public static IHtmlString Paypal(this HtmlHelper helper) {
+			return helper.Partial(RazzleTemplates.With("_PaypalPartial"));
 		}
 		public static void RenderNavigation(this HtmlHelper helper) {
 			var config = Resolver.Resolve<IConfigurationReader>().Get<RazzleConfiguration>();

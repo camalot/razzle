@@ -10,8 +10,11 @@ using Razzle.Mvc.Models;
 namespace Razzle.Mvc.Controllers {
 	public class AssetsController : Controller {
 		[ChildActionOnly]
-		public PartialViewResult Gist(string id) {
-			return this.PartialView(model: id.Require());
+		public PartialViewResult Gist(string id, bool allowCopy = true) {
+			return this.PartialView(new GistModel {
+				Id = id.Require(),
+				AllowCopy = allowCopy
+			});
 		}
 
 		public PartialViewResult Adsense() {

@@ -36,11 +36,13 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="Camalot.Common">
-      <HintPath>..\packages\Camalot.Common.1.0.5364.34047\lib\net45\Camalot.Common.dll</HintPath>
+    <Reference Include="Camalot.Common, Version=1.0.5367.33457, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Camalot.Common.1.0.5367.33457\lib\net45\Camalot.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Camalot.Common.Mvc">
-      <HintPath>..\packages\Camalot.Common.Mvc5.5.0.5364.37708\lib\net45\Camalot.Common.Mvc.dll</HintPath>
+    <Reference Include="Camalot.Common.Mvc, Version=5.0.5367.33631, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Camalot.Common.Mvc5.5.0.5367.33631\lib\net45\Camalot.Common.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MoreLinq">
@@ -114,13 +116,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\BundleConfiguration.cs" />
+    <Compile Include="Configuration\FiltersConfiguration.cs" />
     <Compile Include="Configuration\RouteConfiguration.cs" />
     <Compile Include="Controllers\AssetsController.cs" />
     <Compile Include="Controllers\DocumentationController.cs" />
+    <Compile Include="Extensions\ControllerContext.cs" />
     <Compile Include="Extensions\HtmlHelper.cs" />
     <Compile Include="Extensions\UrlHelper.cs" />
     <Compile Include="Extensions\WebPageBase.cs" />
     <Compile Include="Models\AdsenseModel.cs" />
+    <Compile Include="Models\GistModel.cs" />
     <Compile Include="Models\IconHelperModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
