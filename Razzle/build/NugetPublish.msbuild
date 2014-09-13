@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0" DefaultTargets="Publish">
-	<Import Project="$(MSBuildProjectDirectory)\MSBuild.Community.Tasks.Targets"
-				Condition="'$(MSBuildCommunityTasksPath)' == ''"/>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0" DefaultTargets="Publish">
+	<PropertyGroup>
+		<MSBuildCommunityTasksPath>$(MSBuildProjectDirectory)</MSBuildCommunityTasksPath>
+	</PropertyGroup>
+
+	<Import Project="$(MSBuildCommunityTasksPath)\MSBuild.Community.Tasks.targets"/>
 
 	<PropertyGroup>
 		<PublishNuGet Condition=" '$(PublishMode)' == 'NuGet' ">PublishNuGet</PublishNuGet>
 		
 		
-		<OutputPath>$(MSBuildProjectDirectory)\..\$(Project)\bin\debug</OutputPath>
+		<NugetOutputPath>$(MSBuildProjectDirectory)\..\$(Project)\bin</NugetOutputPath>
 		<ReleasesPath>$(MSBuildProjectDirectory)\..\$(Project)\bin\nuget</ReleasesPath>
 		<NugetPath>$(MSBuildProjectDirectory)\..\.nuget</NugetPath>
-		
-		<ViewsPath>$(MSBuildProjectDirectory)\..\Razzle\Views</ViewsPath>
+
+		<ViewsPath>$(MSBuildProjectDirectory)\..\$(Project)</ViewsPath>
 
 		<LocalDeploy Condition=" '$(LocalDeploy)' == '' "></LocalDeploy>
 		<!-- tells this script to not include any binaries (for just a reference package) -->
@@ -19,8 +22,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<NugetContentFiles Include="$(OutputPath)\Nuget\content\**" />
-		<NugetToolsFiles Include="$(OutputPath)\Nuget\tools\**" />
+		<NugetContentFiles Include="$(NugetOutputPath)\Nuget\content\**" />
+		<NugetToolsFiles Include="$(NugetOutputPath)\Nuget\tools\**" />
 	</ItemGroup>
 
 	<Target Name="Publish" Condition=" '$(PublishMode)' == 'NuGet' " DependsOnTargets="NuGetPackage">
@@ -54,8 +57,12 @@
 			<Output TaskParameter="Value" PropertyName="ProjectSharedName" />
 		</CreateProperty>
 
-		<CreateItem Include="$(OutputPath)\$(ProjectSharedName).dll">
+		<CreateItem Include="$(NugetOutputPath)\$(ProjectSharedName).dll">
 			<Output ItemName="ProjectAssemblies" TaskParameter="Include"/>
+		</CreateItem>
+
+		<CreateItem Include="$(NugetOutputPath)\$(ProjectSharedName).*.dll">
+			<Output ItemName="ReferenceAssemblies" TaskParameter="Include"/>
 		</CreateItem>
 
 		<GetAssemblyIdentity
@@ -77,7 +84,7 @@
 			<Output TaskParameter="Value" PropertyName="ProjectVersion" />
 		</CreateProperty>
 
-		<CreateProperty Value="$(OutputPath)\$(ProjectFriendlyName).$(ProjectVersion)">
+		<CreateProperty Value="$(NugetOutputPath)\$(ProjectFriendlyName).$(ProjectVersion)">
 			<Output TaskParameter="Value" PropertyName="PackagePath" />
 		</CreateProperty>
 
@@ -86,38 +93,27 @@
 		</CreateProperty>
 
 		<MakeDir Directories="$(Net4LibPath)" Condition="!Exists('$(Net4LibPath)') AND '$(NoBinaries)' == '' "  />
-		<MakeDir Directories="$(PackagePath)\content\Views\Endpoints" Condition="!Exists('$(PackagePath)\content\Views\Endpoints')" />
-		<MakeDir Directories="$(PackagePath)\content\Content" Condition="!Exists('$(PackagePath)\content\Content')" />
-		<MakeDir Directories="$(PackagePath)\content\Scripts" Condition="!Exists('$(PackagePath)\content\Scripts')" />
+		<MakeDir Directories="$(PackagePath)\content\" Condition="!Exists('$(PackagePath)\content')" />
 		<MakeDir Directories="$(PackagePath)\tools" Condition="!Exists('$(PackagePath)\tools')" />
 
 		<Copy SourceFiles="$(MSBuildProjectDirectory)\$(NuSpecFile)" DestinationFiles="$(PackagePath)\$(NuSpecFile)" />
 
-		<CreateItem Include="@(ProjectAssemblies)" Exclude="$(OutputPath)*.zip;$(OutputPath)*.vshost.*;">
+		<CreateItem Include="@(ProjectAssemblies)">
 			<Output ItemName="CopyFiles" TaskParameter="Include"/>
 		</CreateItem>
+		
 
-		<CreateItem Include="$(ViewsPath)\**\*.*">
+		<CreateItem Include="$(ViewsPath)\**\*.*" Exclude="$(ViewsPath)\**\App_Data\**;$(ViewsPath)\**\bin\**;$(ViewsPath)\**\obj\**;$(ViewsPath)\*.csproj;$(ViewsPath)\**\packages.config;$(ViewsPath)\**\*.user">
 			<Output ItemName="CopyMvcViews" TaskParameter="Include"/>
 		</CreateItem>
 
-		<CreateItem Include="$(StylesIncludeSearch)">
-			<Output ItemName="CopyMvcStyles" TaskParameter="Include"/>
-		</CreateItem>
-
-		<CreateItem Include="$(ScriptsIncludeSearch)">
-			<Output ItemName="CopyMvcScripts" TaskParameter="Include"/>
-		</CreateItem>
-
 		<Copy SourceFiles="@(CopyFiles)" DestinationFolder="$(Net4LibPath)" Condition=" '$(NoBinaries)' == '' " />
-		
+		<Copy SourceFiles="@(ReferenceAssemblies)" DestinationFolder="$(Net4LibPath)" Condition=" '$(NoBinaries)' == '' " />
 		
 		<Copy SourceFiles="@(NugetContentFiles)" DestinationFolder="$(PackagePath)\content\%(RecursiveDir)" />
 		<Copy SourceFiles="@(NugetToolsFiles)" DestinationFolder="$(PackagePath)\tools\%(RecursiveDir)" />
 
-		<Copy SourceFiles="@(CopyMvcViews)" DestinationFolder="$(PackagePath)\content\Views\Endpoints\%(RecursiveDir)" Condition=" '$(NoBinaries)' == '' " />
-		<Copy SourceFiles="@(CopyMvcScripts)" DestinationFolder="$(PackagePath)\content\Scripts\%(RecursiveDir)" Condition=" '$(NoBinaries)' == '' " />
-		<Copy SourceFiles="@(CopyMvcStyles)" DestinationFolder="$(PackagePath)\content\Content\%(RecursiveDir)" Condition=" '$(NoBinaries)' == '' " />
+		<Copy SourceFiles="@(CopyMvcViews)" DestinationFolder="$(PackagePath)\content\%(RecursiveDir)" Condition=" '$(NoBinaries)' == '' " />
 
 		<XmlUpdate
 			Namespace="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd"

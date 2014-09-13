@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -144,6 +146,24 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.svg">
       <DependentUpon>glyphicons-halflings-regular.eot</DependentUpon>
     </Content>
+    <Content Include="assets\images\razzle-114-light.png" />
+    <Content Include="assets\images\razzle-114.png" />
+    <Content Include="assets\images\razzle-120-light.png" />
+    <Content Include="assets\images\razzle-120.png" />
+    <Content Include="assets\images\razzle-144-light.png" />
+    <Content Include="assets\images\razzle-144.png" />
+    <Content Include="assets\images\razzle-152-light.png" />
+    <Content Include="assets\images\razzle-152.png" />
+    <Content Include="assets\images\razzle-16-light.png" />
+    <Content Include="assets\images\razzle-16.png" />
+    <Content Include="assets\images\razzle-32-light.png" />
+    <Content Include="assets\images\razzle-32.png" />
+    <Content Include="assets\images\razzle-57-light.png" />
+    <Content Include="assets\images\razzle-57.png" />
+    <Content Include="assets\images\razzle-72-light.png" />
+    <Content Include="assets\images\razzle-72.png" />
+    <Content Include="assets\images\razzle.png" />
+    <Content Include="assets\images\razzle.svg" />
     <Content Include="assets\scripts\libs\jquery.scrollto.js" />
     <Content Include="assets\scripts\libs\jquery.scrollto.min.js">
       <DependentUpon>jquery.scrollto.js</DependentUpon>
@@ -278,6 +298,7 @@
     <Content Include="assets\fonts\glyphicons-halflings-regular.woff">
       <DependentUpon>glyphicons-halflings-regular.eot</DependentUpon>
     </Content>
+    <Content Include="assets\images\razzle.pdn" />
     <None Include="assets\scripts\libs\jquery-2.1.1.intellisense.js">
       <DependentUpon>jquery-2.1.1.js</DependentUpon>
     </None>
@@ -487,6 +508,13 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets" Condition="Exists('..\packages\AutoMapper.3.2.1\tools\AutoMapper.targets')" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

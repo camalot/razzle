@@ -21,11 +21,11 @@
   display: inline-block;
 }
 .logo {
-  background-image: url(../images/razzle-114.png);
+  background-image: url(../images/razzle-120-light.png);
   background-repeat: no-repeat;
   background-position: center center;
-  height: 114px;
-  width: 114px;
+  height: 120px;
+  width: 120px;
   margin-right: 20px;
   display: inline-block;
   opacity: 1;
@@ -35,7 +35,7 @@
   transition: opacity linear 300ms;
 }
 .logo.small {
-  background-image: url(../images/razzle-32.png);
+  background-image: url(../images/razzle-32-light.png);
   height: 32px;
   width: 32px;
 }

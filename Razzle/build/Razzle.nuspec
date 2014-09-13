@@ -1,22 +1,33 @@
 <?xml version="1.0"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
-    <id>EndpointMvc</id>
+    <id>Razzle</id>
     <version>1.0.0.0</version>
     <authors>Ryan Conrad</authors>
 		<owners>Ryan Conrad</owners>
-    <licenseUrl>https://raw.github.com/camalot/EndpointMvc/master/LICENSE.md</licenseUrl>
-    <projectUrl>http://endpointmvc.bit13.com/</projectUrl>
-		<iconUrl>https://raw.github.com/camalot/EndpointMvc/master/EndpointMvc/EndpointMvcSite/assets/images/endpointmvc-256.png</iconUrl>
+    <licenseUrl>https://raw.github.com/camalot/razzle/master/LICENSE.md</licenseUrl>
+    <projectUrl>http://razzle.bit13.com/</projectUrl>
+		<!--<iconUrl></iconUrl>-->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Builds api endpoint information / documentation dynamically by reflecting over the controllers and actions.</description>
-    <summary>Builds api endpoint information / documentation</summary>
+    <description>Documentation Served.</description>
+    <summary>Documentation from Assembly and XML Documenation</summary>
     <language>en-US</language>
 		<releaseNotes></releaseNotes>
-		<copyright>Copyright 2013</copyright>
+		<copyright>Copyright 2014</copyright>
 		<tags>webapi aspnet mvc api rest json xml web services endpoint</tags>
 		<dependencies>
-			<dependency id="EndpointMvc.Mvc5" version="[5.0,5.9]" />
+			<dependency id="AutoMapper" version="[3.2.1]" />
+			<dependency id="Microsoft.AspNet.Mvc" version="5.2.2" />
+			<dependency id="Camalot.Common.Mvc5" version="[5.0,5.9]" />
+			<dependency id="morelinq" version="[1.1]" />
+			<dependency id="Castle.Windsor" version="" />
+			<dependency id="WebActivatorEx" version="" />
 		</dependencies>
+		<frameworkAssemblies>
+			<frameworkAssembly assemblyName="System.Drawing" targetFramework="net451" />
+			<frameworkAssembly assemblyName="System.Web" targetFramework="net451" />
+			<frameworkAssembly assemblyName="System.Configuration" targetFramework="net451" />
+		</frameworkAssemblies>
+
 	</metadata>
 </package>
