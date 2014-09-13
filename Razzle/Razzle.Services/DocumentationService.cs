@@ -55,6 +55,11 @@ namespace Razzle.Services {
 			}
 
 			var assembly = GetAssemblyDocumentationNames(assemblyName);
+
+			if(assembly == null) {
+				return null;
+			}
+
 			var rootNS = new Namespace {
 				Name = assembly.Namespace,
 			};

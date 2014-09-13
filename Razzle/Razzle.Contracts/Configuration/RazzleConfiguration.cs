@@ -40,7 +40,7 @@ namespace Razzle.Contracts.Configuration {
 	public class RazzleDocumentationAssemblyList : List<RazzleDocumentationAssembly> {
 		public RazzleDocumentationAssembly this[string name] {
 			get {
-				return this.First(m => m.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase) || m.Namespace.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+				return this.FirstOrDefault(m => m.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase) || m.Namespace.Equals(name, StringComparison.InvariantCultureIgnoreCase));
 			}
 		}
 	}

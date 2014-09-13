@@ -1,5 +1,5 @@
-razzle
-======
+<h1><img src="https://raw.githubusercontent.com/camalot/razzle/master/Razzle/Razzle/assets/images/razzle-120.png" style="float:none; margin-right: 10px; vertical-align: middle" />Razzle</h1>
+<div style="clear: both; font-size: 0;"></div>
 
 A documentation site for .NET assemblies generated off the XML documentation and the assembly. 
 

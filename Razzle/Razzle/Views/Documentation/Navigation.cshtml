@@ -4,7 +4,7 @@
 @{
 	const int scrollTopOffset = -70;
 	var id = ViewContext.ParentActionViewContext.RouteData.Values["id"] == null ? "" : ViewContext.ParentActionViewContext.RouteData.Values["id"].ToString();
-	var fullNav = Model.Name.Equals(id, StringComparison.InvariantCultureIgnoreCase);
+	var fullNav = Model != null && Model.Name.Equals(id, StringComparison.InvariantCultureIgnoreCase);
 
 }
 
@@ -28,17 +28,17 @@
 				 href="@(Url.Action("", "Documentation", new { id = Model.Name }))#@ns.Id"
 				 title="@ns.ToString()"
 				 class="track"><i class="mll mrs fa fa-code"></i><span>@SafeNamespaceName(ns.Name)</span></a>
-			@if(ns.Classes.Count > 0) {
-				<ul class="nav nested mll" data-id="@ns.Id">
-					@foreach(var nsx in ns.Namespaces.Where(m => m.Name != ns.Name)) {
-						@DisplayNamespace(nsx, offset)
-					}
-					@foreach(var pm in ns.Classes) {
-						@DisplayClass(pm, offset)
-					}
-				</ul>
-			}
-		</li>
+				@if(ns.Classes.Count > 0) {
+					<ul class="nav nested mll" data-id="@ns.Id">
+						@foreach(var nsx in ns.Namespaces.Where(m => m.Name != ns.Name)) {
+							@DisplayNamespace(nsx, offset)
+						}
+						@foreach(var pm in ns.Classes) {
+							@DisplayClass(pm, offset)
+						}
+					</ul>
+				}
+			</li>
 	}
 }
 
@@ -54,37 +54,37 @@
 						@DisplayNamespace(ns, offset)
 					}
 					@foreach(var c in root.Classes) {
-						@DisplayClass(c,offset)
+						@DisplayClass(c, offset)
 					}
 
 				</ul>
 			}
 		</li>
 	} else {
-		
+
 	}
 }
 @helper DisplayClass(Class cm, int offset) {
 	if(!cm.Ignore) {
 		<li>
-			<a data-expandable="click" 
-				 data-expandable-toggle="nav-expanded" 
-				 data-expandable-target="ul[data-id='@(cm.Id)']" 
-				 data-scroll="click" 
-				 data-scroll-offset="@(offset)" 
-				 href="@(Url.Action("", "Documentation", new { id = Model.Name }))#@cm.Id" title="@cm.ToString()" 
+			<a data-expandable="click"
+				 data-expandable-toggle="nav-expanded"
+				 data-expandable-target="ul[data-id='@(cm.Id)']"
+				 data-scroll="click"
+				 data-scroll-offset="@(offset)"
+				 href="@(Url.Action("", "Documentation", new { id = Model.Name }))#@cm.Id" title="@cm.ToString()"
 				 class="track"><i class="mll mrs fa fa-bolt"></i><span>@cm.Name</span></a>
-			@if(cm.Properties.Count > 0 || cm.Methods.Count > 0) {
-				<ul class="nav nested mll" data-id="@cm.Id">
-					@foreach(var pm in cm.Properties) {
-						@DisplayProperty(pm, offset)
-					}
-					@foreach(var m in cm.Methods) {
-						@DisplayMethod(m, offset)
-					}
-				</ul>
-			}
-		</li>
+				@if(cm.Properties.Count > 0 || cm.Methods.Count > 0) {
+					<ul class="nav nested mll" data-id="@cm.Id">
+						@foreach(var pm in cm.Properties) {
+							@DisplayProperty(pm, offset)
+						}
+						@foreach(var m in cm.Methods) {
+							@DisplayMethod(m, offset)
+						}
+					</ul>
+				}
+			</li>
 	}
 }
 
@@ -105,7 +105,10 @@
 		@DisplayRootNamespace(scrollTopOffset)
 	</li>
 } else {
-	<li>
-		<a data-scroll="click" data-scroll-offset="@(scrollTopOffset)" href="@(Url.Action("", "Documentation", new { id = Model.Name }))" class="track"><i class="mrs fa fa-code"></i><span>@Model.Name</span></a>
-	</li>
+	if(Model != null) {
+		// model is null if there is no documentation available for it. 
+		<li>
+			<a data-scroll="click" data-scroll-offset="@(scrollTopOffset)" href="@(Url.Action("", "Documentation", new { id = Model.Name }))" class="track"><i class="mrs fa fa-code"></i><span>@Model.Name</span></a>
+		</li>
+	}
 }
