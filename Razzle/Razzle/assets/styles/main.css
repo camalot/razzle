@@ -35,12 +35,13 @@
   display: inline-block;
 }
 .logo {
-  background-image: url(../images/razzle-120-light.png);
+  background-image: url("/assets/logo/120/?light=true");
   background-repeat: no-repeat;
   background-position: center center;
-  height: 120px;
-  width: 120px;
+  height: 140px;
+  width: 155px;
   margin-right: 20px;
+  margin-top: -10px;
   display: inline-block;
   opacity: 1;
   -moz-transition: opacity linear 300ms;
@@ -49,9 +50,10 @@
   transition: opacity linear 300ms;
 }
 .logo.small {
-  background-image: url(../images/razzle-32-light.png);
+  background-image: url("/assets/logo/32/?light=true");
   height: 32px;
-  width: 32px;
+  width: 42px;
+  margin-top: -3px;
 }
 .logo.logo-hidden {
   opacity: 0;

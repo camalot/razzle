@@ -19,16 +19,17 @@ using Camalot.Common.Configuration;
 using Razzle.Contracts.Configuration;
 
 namespace Razzle.Services {
-	public class DocumentationService : IDocumentationService{
+	public class DocumentationService : IDocumentationService {
 		public DocumentationService(IConfigurationReader configurationReader) {
 			Configuration = configurationReader.Get<RazzleConfiguration>();
+			GetDocumentationDomain();
 		}
 
 		private RazzleConfiguration Configuration { get; set; }
 		private AppDomain DocumentationDomain { get; set; }
 		private IEnumerable<Assembly> DocumentationAssemblies {
 			get {
-				return GetDocumentationDomain().GetAssemblies().Where(a => !a.IsDynamic);
+				return DocumentationDomain.GetAssemblies().Where(a => !a.IsDynamic);
 			}
 		}
 
@@ -50,6 +51,7 @@ namespace Razzle.Services {
 		}
 
 		Namespace IDocumentationService.Build(string assemblyName) {
+
 			if(string.IsNullOrWhiteSpace(assemblyName)) {
 				return null;
 			}
@@ -69,7 +71,7 @@ namespace Razzle.Services {
 
 			DocumentationAssemblies.Where(a =>
 					(
-						a.GetName().Name.Equals(assembly.Namespace, StringComparison.InvariantCultureIgnoreCase) || 
+						a.GetName().Name.Equals(assembly.Namespace, StringComparison.InvariantCultureIgnoreCase) ||
 						a.GetName().Name.Equals(assembly.Name, StringComparison.InvariantCultureIgnoreCase)
 					)
 				).ForEach(a => {
@@ -87,7 +89,9 @@ namespace Razzle.Services {
 							}
 						});
 				});
+			//AppDomain.Unload(DocumentationDomain);
 			return rootNS;
+
 		}
 
 
@@ -95,16 +99,21 @@ namespace Razzle.Services {
 		/// Gets the documentation domain.
 		/// </summary>
 		/// <returns></returns>
-		private AppDomain GetDocumentationDomain() {
+		private void GetDocumentationDomain() {
 			if(DocumentationDomain == null) {
+				//var adsetup = new AppDomainSetup();
+				//adsetup.ShadowCopyFiles = "true";
 				// create a new app domain for processing.
-				DocumentationDomain = AppDomain.CurrentDomain; // AppDomain.CreateDomain("Documentation");
+				DocumentationDomain = AppDomain.CurrentDomain; //AppDomain.CreateDomain("Razzle", null,adsetup);
+				// load all currently loaded assemblies in to the domain
+				//AppDomain.CurrentDomain.GetAssemblies().Where(a => !a.IsDynamic).ForEach(a => {
+				//DocumentationDomain.Load(a.GetName());
+				//});
 				var dir = new DirectoryInfo(DataDirectory);
 				dir.GetFiles("*.dll").ForEach(a => {
 					DocumentationDomain.Load(AssemblyName.GetAssemblyName(a.FullName));
 				});
 			}
-			return DocumentationDomain;
 		}
 
 		/// <summary>

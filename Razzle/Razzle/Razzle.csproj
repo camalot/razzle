@@ -450,6 +450,7 @@
     <Content Include="Views\Documentation\_AboutPartial.cshtml" />
     <Content Include="Views\Assets\Gist.cshtml" />
     <Content Include="Views\Documentation\Assemblies\RazzleSample.cshtml" />
+    <Content Include="Views\Assets\Logo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
